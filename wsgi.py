@@ -7,7 +7,7 @@ from config import Config
 from flask_marshmallow import Marshmallow
 
 
-logging.warn(os.environ["DUMMY"])
+#logging.warn(os.environ["DUMMY"])
 
 app = Flask(__name__)
 
