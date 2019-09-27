@@ -6,8 +6,6 @@ from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from config import Config
 
-#logging.warn(os.environ["DUMMY"])
-
 app = Flask(__name__)
 
 app.config.from_object(Config)
