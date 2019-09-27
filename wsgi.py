@@ -1,7 +1,7 @@
 # wsgi.py
 import os
 import logging
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 from config import Config
 
@@ -20,9 +20,20 @@ ma = Marshmallow(app)
 from models import Product
 from schemas import products_schema, product_schema
 
+@app.route('/')
+def home():
+    products = db.session.query(Product).all()
+
+    return render_template('home.html', products=products)
+
 @app.route('/hello')
 def hello():
     return "Hello World!"
+
+@app.route('/<int:id>')
+def product_html(id):
+    product = db.session.query(Product).get(id)
+    return render_template('product.html', product=product)
 
 @app.route('/products', methods=['GET'])
 def products():
